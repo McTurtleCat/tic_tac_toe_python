@@ -1,6 +1,5 @@
 # TO DO List
-### new fuction for empty board 
-### user inputs
+ ### user inputs
 input validation for user inputs
 ### Win Coditions 
 ### play again
