@@ -37,7 +37,32 @@ BoardDictionaryKey = {"TopLeft":"TL","TopCentre":"TC", "TopRight":"TR", "MiddleL
 BoardDictionary = {"TopLeft":"","TopCentre":"", "TopRight":"", "MiddleLeft":"","MiddleCentre":"", "MiddleRight":"", "BottomLeft":"","BottomCentre":"", "BottomRight":""}
 
 PrintBoard (BoardDictionaryKey)
+print("To enter a value in a square enter the two correspounding letters""\n")
+
 
 Turn (Number)
 
 #PrintBoard (BoardDictionary)
+
+
+# -- Inputs --
+WinCondition = False
+
+while WinCondition == False or (BoardDictionary["TopLeft"] == "" and BoardDictionary["TopCentre"] == "" and BoardDictionary["TopRight"] == "" and BoardDictionary["MiddleLeft"] == "" and BoardDictionary["MiddleCentre"] == "" and BoardDictionary["MiddleRight"] == "" and BoardDictionary["BottomLeft"] == "" and BoardDictionary["BottomCentre"] == "" and BoardDictionary["BottomRight"] == ""):
+
+    UserInput = input("What square do you want to input ").upper()
+    #print(UserInput)
+
+    if UserInput == "HELP":
+        print("")
+        PrintBoard(BoardDictionaryKey)
+        print("To enter a value in a square enter the two correspounding letters""\n")
+
+
+    while UserInput != "TL" and UserInput != "TC" and UserInput != "TR" and UserInput != "ML" and UserInput != "MC" and UserInput != "MR" and UserInput != "BL" and UserInput != "BC" and UserInput != "BR":
+        UserInput = input("Error please re-enter what square you want to input ").upper()
+
+        if UserInput == "HELP":
+                print("")
+                PrintBoard(BoardDictionaryKey)
+                print("To enter a value in a square enter the two correspounding letters""\n")
