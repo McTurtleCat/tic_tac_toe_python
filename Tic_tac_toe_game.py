@@ -1,13 +1,5 @@
 #Tic tac toe game
 
-#Board for the key values instead of X or O
-def PrintBoardKey (BoardDictionaryKey):
-    print( "|", BoardDictionaryKey["TopLeft"],    "|", BoardDictionaryKey["TopCentre"],    "|", BoardDictionaryKey["TopRight"],     "|" )
-    print( "|", BoardDictionaryKey["MiddleLeft"], "|", BoardDictionaryKey["MiddleCentre"], "|", BoardDictionaryKey["MiddleRight"],  "|" )
-    print( "|", BoardDictionaryKey["BottomLeft"], "|", BoardDictionaryKey["BottomCentre"], "|", BoardDictionaryKey["BottomRight"] , "|\n")
-
-    print("To enter a value into a square enter the 2 letters in the square in the same order.""\n")
-
 #Board the users play on
 def PrintBoard (BoardDictionary):
     print( "|", BoardDictionary["TopLeft"],    "|", BoardDictionary["TopCentre"],    "|", BoardDictionary["TopRight"],     "|" )
@@ -44,7 +36,7 @@ BoardDictionaryKey = {"TopLeft":"TL","TopCentre":"TC", "TopRight":"TR", "MiddleL
 #Dictionary for the board, which is used by the player, begins with no values, as the game progresses the keys in the dictionary get values
 BoardDictionary = {"TopLeft":"","TopCentre":"", "TopRight":"", "MiddleLeft":"","MiddleCentre":"", "MiddleRight":"", "BottomLeft":"","BottomCentre":"", "BottomRight":""}
 
-PrintBoardKey (BoardDictionaryKey)
+PrintBoard (BoardDictionaryKey)
 
 Turn (Number)
 
