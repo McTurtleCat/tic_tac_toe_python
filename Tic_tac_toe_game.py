@@ -1,24 +1,48 @@
 #Tic tac toe game
-from enum import ENUM
+from enum import Enum
 
-class Mark(Enum):
-	EMPTY = 0
-	X = 1
-	O = 2
+class Square(Enum):
+    EMPTY = 0
+    X = 1
+    O = 2
 
 
 class Board:
+    NumOfRows = 3
+    NumOfCols = NumOfRows
+    NumOfSquares = NumOfRows * NumOfCols
 
-     NumOfRows = 3
-     NumOfCols = NumOfRows
-     NumOfSquares = (NumOfRows * NumOfCols)
+    Squares = [Square.EMPTY] * NumOfSquares
+
+    def DisplayBoard(self):
+
+        SquareDictionary = {
+            Square.EMPTY: ".", 
+            Square.X: "X", 
+            Square.O: "O"
+        }
+
+        print("___")
+
+        for Index, square in enumerate(self.Squares, start=1):
+            square_character = SquareDictionary[square]
+            print(square_character, end="")
+
+            if Index % self.NumOfCols == 0:
+                print()
 
 
-     def DisplayBoard (self):
-          SquareDictionary = {"Square.Empty": "",
-                              "Square.X": "X",
-                              "Square.O": "O"}
+def main():
+    print("Tic tac toe game")
+    board = Board()
+    board.DisplayBoard()
 
+
+if __name__ == "__main__":
+    main()
+
+          
+"""""
 #Board the users play on
 def PrintBoard (BoardDictionary):
     print( "|", BoardDictionary["TopLeft"],    "|", BoardDictionary["TopCentre"],    "|", BoardDictionary["TopRight"],     "|" )
@@ -85,3 +109,4 @@ while WinCondition == False or (BoardDictionary["TopLeft"] == "" and BoardDictio
                 print("")
                 PrintBoard(BoardDictionaryKey)
                 print("To enter a value in a square enter the two correspounding letters""\n")
+"""
