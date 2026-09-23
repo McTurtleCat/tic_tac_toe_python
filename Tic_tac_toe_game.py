@@ -1,4 +1,23 @@
 #Tic tac toe game
+from enum import ENUM
+
+class Mark(Enum):
+	EMPTY = 0
+	X = 1
+	O = 2
+
+
+class Board:
+
+     NumOfRows = 3
+     NumOfCols = NumOfRows
+     NumOfSquares = (NumOfRows * NumOfCols)
+
+
+     def DisplayBoard (self):
+          SquareDictionary = {"Square.Empty": "",
+                              "Square.X": "X",
+                              "Square.O": "O"}
 
 #Board the users play on
 def PrintBoard (BoardDictionary):
