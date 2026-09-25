@@ -14,6 +14,16 @@ class Board:
 
     Squares = [Square.EMPTY] * NumOfSquares
 
+    def ListIndex(self, row, col):
+
+        return ((row * self.NumOfRows) + col)
+
+    def GetSquare(self, row, col):
+                    
+        SquareListPosition = self.ListIndex(col, row)
+        return self.Squares[SquareListPosition] 
+        
+
     def DisplayBoard(self):
 
         SquareDictionary = {
@@ -36,6 +46,13 @@ def main():
     print("Tic tac toe game")
     board = Board()
     board.DisplayBoard()
+
+    
+    square = board.GetSquare(2, 1)
+    if (square == Square.EMPTY):
+        print("Success")
+    else:
+        print("Failure (found ", square, ")")
 
 
 if __name__ == "__main__":
