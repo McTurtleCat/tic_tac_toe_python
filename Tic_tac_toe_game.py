@@ -18,9 +18,15 @@ class Board:
 
         return ((row * self.NumOfRows) + col)
 
+    def SetSquare(self, row, col, Square):
+                    
+        SquareListPosition = self.ListIndex(col, row)
+        self.Squares[SquareListPosition] = Square
+    
     def GetSquare(self, row, col):
                     
         SquareListPosition = self.ListIndex(col, row)
+
         return self.Squares[SquareListPosition] 
         
 
@@ -47,9 +53,13 @@ def main():
     board = Board()
     board.DisplayBoard()
 
+    board.SetSquare(2, 1, Square.X)
+    board.DisplayBoard()
+
+
     
     square = board.GetSquare(2, 1)
-    if (square == Square.EMPTY):
+    if (square == Square.X):
         print("Success")
     else:
         print("Failure (found ", square, ")")
