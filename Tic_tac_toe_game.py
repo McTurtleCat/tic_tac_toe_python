@@ -102,8 +102,8 @@ class Board:
         print("___")
 
         for Index, square in enumerate(self.Squares, start=1):
-            square_character = SquareDictionary[square]
-            print(square_character, end="")
+            SquareCharacter = SquareDictionary[square]
+            print(SquareCharacter, end="")
 
 
             if Index % self.NumOfCols == 0:
