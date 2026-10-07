@@ -84,6 +84,32 @@ class Board:
 
         return self.Squares[SquareListPosition] 
 
+    def GameWin(self, square):
+        '''
+        Check the board to determine whether the specified square has a winning position. 
+        A winning position is one where one of the following is true:
+                  * a row where all the squares in the row are the same
+                  * a column where all the squares in the column are the same
+                  * or a diaganol from the top left to bottom right
+                  * or a diagonial from the top right to bottom left
+
+        Args:
+            square (Square): Current state of the specified board position.
+        '''
+
+        if \
+            ((self.GetSquare(0, 0)) and (self.GetSquare(1, 0)) and (self.GetSquare(2, 0)) == square) or\
+            ((self.GetSquare(0, 1)) and (self.GetSquare(1, 1)) and (self.GetSquare(2, 1)) == square) or\
+            ((self.GetSquare(0, 2)) and (self.GetSquare(1, 2)) and (self.GetSquare(2, 2)) == square) or\
+            ((self.GetSquare(0, 0)) and (self.GetSquare(0, 1)) and (self.GetSquare(0, 2)) == square) or\
+            ((self.GetSquare(1, 0)) and (self.GetSquare(1, 1)) and (self.GetSquare(1, 2)) == square) or\
+            ((self.GetSquare(2, 0)) and (self.GetSquare(2, 1)) and (self.GetSquare(2, 2)) == square) or\
+            ((self.GetSquare(0, 0)) and (self.GetSquare(1, 1)) and (self.GetSquare(2, 2)) == square) or\
+            ((self.GetSquare(2, 2)) and (self.GetSquare(1, 1)) and (self.GetSquare(0, 0)) == square):
+            
+            Win = True
+        print("!")
+        return Win
 
     def DisplayBoard(self):
         '''
@@ -137,6 +163,17 @@ def main():
     else:
         print("Failure (found ", square, ")")
 
+    board.SetSquare(2, 2, Square.X)  # Testing: Set a specific square on the board to a known value
+    board.SetSquare(2, 0, Square.X)  # Testing: Set a specific square on the board to a known value
+    board.DisplayBoard()
+
+
+    Win = board.GameWin(Square.X) # Calling the GameWin function to see if the Game has been won
+    board.DisplayBoard()
+
+    #print(Win) #Testing: to see if win is true or false
+    if Win == True:
+        print("The game has been won by X")
 
 # Entry point for the program, if run as a script
 if __name__ == "__main__":
