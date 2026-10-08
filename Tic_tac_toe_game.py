@@ -97,18 +97,27 @@ class Board:
             square (Square): Current state of the specified board position.
         '''
 
-        if \
-            ((self.GetSquare(0, 0)) and (self.GetSquare(1, 0)) and (self.GetSquare(2, 0)) == square) or\
-            ((self.GetSquare(0, 1)) and (self.GetSquare(1, 1)) and (self.GetSquare(2, 1)) == square) or\
-            ((self.GetSquare(0, 2)) and (self.GetSquare(1, 2)) and (self.GetSquare(2, 2)) == square) or\
-            ((self.GetSquare(0, 0)) and (self.GetSquare(0, 1)) and (self.GetSquare(0, 2)) == square) or\
-            ((self.GetSquare(1, 0)) and (self.GetSquare(1, 1)) and (self.GetSquare(1, 2)) == square) or\
-            ((self.GetSquare(2, 0)) and (self.GetSquare(2, 1)) and (self.GetSquare(2, 2)) == square) or\
-            ((self.GetSquare(0, 0)) and (self.GetSquare(1, 1)) and (self.GetSquare(2, 2)) == square) or\
-            ((self.GetSquare(2, 2)) and (self.GetSquare(1, 1)) and (self.GetSquare(0, 0)) == square):
-            
-            Win = True
-        print("!")
+        Win = False
+
+
+        #Columns
+        Win = Win or \
+            (self.GetSquare(0, 0) == self.GetSquare(1, 0) == self.GetSquare(2, 0) == square) or \
+            (self.GetSquare(0, 1) == self.GetSquare(1, 1) == self.GetSquare(2, 1) == square) or \
+            (self.GetSquare(0, 2) == self.GetSquare(1, 2) == self.GetSquare(2, 2) == square)
+
+        #rows
+        Win = Win or \
+            (self.GetSquare(0, 0) == self.GetSquare(0, 1) == self.GetSquare(0, 2) == square) or \
+            (self.GetSquare(1, 0) == self.GetSquare(1, 1) == self.GetSquare(1, 2) == square) or \
+            (self.GetSquare(2, 0) == self.GetSquare(2, 1) == self.GetSquare(2, 2) == square)
+
+        #diagonals
+        Win = Win or\
+            (self.GetSquare(0, 0) == self.GetSquare(1, 1) == self.GetSquare(2, 2) == square) or\
+            (self.GetSquare(0, 2) == self.GetSquare(1, 1) == self.GetSquare(2, 0) == square)
+
+
         return Win
 
     def DisplayBoard(self):
@@ -146,12 +155,12 @@ def main():
     board.DisplayBoard()
 
     # Testing: Set a specific square on the board to a known value
-    board.SetSquare(2, 1, Square.X)
+    board.SetSquare(0, 1, Square.X)
 
     board.DisplayBoard()  # Display the updated board
 
     # Testing: Getting a specific square from the board 
-    square = board.GetSquare(2, 1)
+    square = board.GetSquare(0, 1)
 
     #If the value the function returns is the same as the value set,
     # then it displays a success message
@@ -163,8 +172,8 @@ def main():
     else:
         print("Failure (found ", square, ")")
 
-    board.SetSquare(2, 2, Square.X)  # Testing: Set a specific square on the board to a known value
-    board.SetSquare(2, 0, Square.X)  # Testing: Set a specific square on the board to a known value
+    board.SetSquare(0, 2, Square.X)  # Testing: Set a specific square on the board to a known value
+    board.SetSquare(0, 0, Square.X)  # Testing: Set a specific square on the board to a known value
     board.DisplayBoard()
 
 
