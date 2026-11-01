@@ -9,6 +9,8 @@ a command line game that accepts text input and generates text output.
 # Import to support enumerations
 from enum import Enum
 
+import random
+
 
 class Square(Enum):
     '''
@@ -144,11 +146,32 @@ class Board:
             if Index % self.NumOfCols == 0:
                 print()
 
+class Player:
+
+    def Turn():
+
+        RandNumber = random.randint(1,2)
+        Number = RandNumber % 2
+
+        if Number == 1:
+            Letter = "X"
+
+        elif Number == 0:
+            Letter = "O"
+
+        Number += 1
+
+        Number = Number % 2
+
+        print("It is's" ,Letter, " Turn\n ")
+
+
 
 def main():
     '''
     Run the board tests
     '''
+
     print("Tic tac toe game")
 
     board = Board()  # Create a new board
@@ -183,6 +206,13 @@ def main():
     #print(Win) #Testing: to see if win is true or false
     if Win == True:
         print("The game has been won by X")
+
+    board.SetSquare(0, 1, Square.EMPTY)
+    board.SetSquare(0, 2, Square.EMPTY)
+    board.SetSquare(0, 0, Square.EMPTY)
+    board.DisplayBoard()
+
+    Player.Turn ()
 
 # Entry point for the program, if run as a script
 if __name__ == "__main__":
