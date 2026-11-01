@@ -183,6 +183,25 @@ class Player:
 
         print("It is's" ,Letter, " Turn\n ")
 
+    def Move(board):
+
+        BoardDictionaryKey = {"TopLeft":0,"TopCentre":3, "TopRight":6, "MiddleLeft":1,"MiddleCentre":4, "MiddleRight":7, "BottomLeft":2,"BottomCentre":5, "BottomRight":8}
+        print ("Input one of the following squares, Key: TopLeft, TopCentre, TopRight, MiddleLeft, MiddleCentre, MiddleRight, BottomLeft, BottomCentre, BottomRight")
+        SquareInput = input("What square do you want to input? ")
+
+        while SquareInput not in BoardDictionaryKey:
+
+            print("error,please re-enter")
+            SquareInput = input("What square do you want to input? ")
+        
+        row,col = board.ListIndexInverse (BoardDictionaryKey[SquareInput])
+
+
+
+        board.SetSquare(row, col, Square.X)
+        board.DisplayBoard()
+
+
 
 def main():
     '''
@@ -237,6 +256,8 @@ def main():
 
     if Horiz == 2 and Vert == 1:
         print("ListIndexInverse Test Passed")
+
+    Player.Move(board)
 
 # Entry point for the program, if run as a script
 if __name__ == "__main__":
