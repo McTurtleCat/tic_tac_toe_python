@@ -52,6 +52,24 @@ class Board:
 
         return ((row * self.NumOfRows) + col)
 
+    def ListIndexInverse(self, IndexNumber):
+            '''
+            Translate a index of the board squares list to a board pointion in 
+            columns and rows.
+    
+            Args:
+                IndexNumber (int):Index of board squares
+    
+            Returns:
+                row (int): Vertical position of the board square (0 based).
+                col (int):Horizontal position of the board square (0 based).
+            '''
+
+            col = IndexNumber % self.NumOfCols
+            row = int(IndexNumber/self.NumOfCols)
+
+            return row,col
+
 
     def SetSquare(self, row, col, square):
         '''
@@ -166,7 +184,6 @@ class Player:
         print("It is's" ,Letter, " Turn\n ")
 
 
-
 def main():
     '''
     Run the board tests
@@ -207,12 +224,19 @@ def main():
     if Win == True:
         print("The game has been won by X")
 
+
     board.SetSquare(0, 1, Square.EMPTY)
     board.SetSquare(0, 2, Square.EMPTY)
     board.SetSquare(0, 0, Square.EMPTY)
     board.DisplayBoard()
 
     Player.Turn ()
+
+    TestIndex = board.ListIndex(2,1)
+    Horiz,Vert = board.ListIndexInverse(TestIndex)
+
+    if Horiz == 2 and Vert == 1:
+        print("ListIndexInverse Test Passed")
 
 # Entry point for the program, if run as a script
 if __name__ == "__main__":
