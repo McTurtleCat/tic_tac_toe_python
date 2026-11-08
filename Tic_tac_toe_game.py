@@ -189,7 +189,10 @@ class Player:
 
         print ("Input one of the following squares, Key: TL, TC, TR, ML, MC, MR, BL, BC, BR (e.g., TL = Top Left)")
 
-        while True:
+
+        SquareCheck = False
+
+        while SquareCheck == False:
             board.DisplayBoard()
             SquareInput = input("What square do you want to input? ").upper()
 
@@ -228,7 +231,7 @@ class Player:
                 print("\nSquare is not empty please re-enter")
 
             else:
-                break
+                SquareCheck = True
 
         board.SetSquare(row, col, Letter)
         board.DisplayBoard()
