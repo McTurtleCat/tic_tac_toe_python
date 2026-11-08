@@ -56,10 +56,10 @@ class Board:
             '''
             Translate a index of the board squares list to a board pointion in 
             columns and rows.
-    
+
             Args:
                 IndexNumber (int):Index of board squares
-    
+
             Returns:
                 row (int): Vertical position of the board square (0 based).
                 col (int):Horizontal position of the board square (0 based).
@@ -187,20 +187,37 @@ class Player:
 
     def Move(board, Letter):
 
-        BoardDictionaryKey = {"TopLeft":0,"TopCentre":3, "TopRight":6, "MiddleLeft":1,"MiddleCentre":4, "MiddleRight":7, "BottomLeft":2,"BottomCentre":5, "BottomRight":8}
+        BoardDictionaryKey = {
+            "TopLeft" : 0,
+            "MiddleLeft" : 1,
+            "BottomLeft" : 2,
+            "TopCentre" : 3,
+            "MiddleCentre" : 4,
+            "BottomCentre" : 5,
+            "TopRight" : 6,
+            "MiddleRight" : 7,
+            "BottomRight" : 8
+            }
+
         print ("Input one of the following squares, Key: TopLeft, TopCentre, TopRight, MiddleLeft, MiddleCentre, MiddleRight, BottomLeft, BottomCentre, BottomRight")
         #SquareInput = input("What square do you want to input? ")
+
         SquareInput = "TopLeft"
 
-
-        while SquareInput not in BoardDictionaryKey:
-
-            print("error,please re-enter")
+        while True:
             SquareInput = input("What square do you want to input? ")
+    
+            if SquareInput not in BoardDictionaryKey:
+                print("error, please re-enter")
+                continue
         
-        row,col = board.ListIndexInverse (BoardDictionaryKey[SquareInput])
-
-
+            row, col = board.ListIndexInverse(BoardDictionaryKey[SquareInput])
+            SquareState = board.GetSquare(row, col)
+    
+            if SquareState == Square.EMPTY:
+                break 
+        
+        print("\nSquare is not empty please re-enter")
 
         board.SetSquare(row, col, Letter)
         board.DisplayBoard()
@@ -248,12 +265,6 @@ def main():
         print("The game has been won by X")
 
 
-    board.SetSquare(0, 1, Square.EMPTY)
-    board.SetSquare(0, 2, Square.EMPTY)
-    board.SetSquare(0, 0, Square.EMPTY)
-    board.DisplayBoard()
-
-    Letter = Player.Turn ()
 
     TestIndex = board.ListIndex(2,1)
     Horiz,Vert = board.ListIndexInverse(TestIndex)
@@ -261,7 +272,19 @@ def main():
     if Horiz == 2 and Vert == 1:
         print("ListIndexInverse Test Passed")
 
+    board.SetSquare(0, 1, Square.EMPTY)
+    board.SetSquare(0, 2, Square.EMPTY)
+    #board.SetSquare(0, 0, Square.EMPTY)
+    board.DisplayBoard()
+
+    Letter = Player.Turn ()
+
+
     Player.Move(board, Letter)
+    #board.DisplayBoard()
+
+
+
 
 # Entry point for the program, if run as a script
 if __name__ == "__main__":
