@@ -187,37 +187,48 @@ class Player:
 
     def Move(board, Letter):
 
-        BoardDictionaryKey = {
-            "TopLeft" : 0,
-            "MiddleLeft" : 1,
-            "BottomLeft" : 2,
-            "TopCentre" : 3,
-            "MiddleCentre" : 4,
-            "BottomCentre" : 5,
-            "TopRight" : 6,
-            "MiddleRight" : 7,
-            "BottomRight" : 8
-            }
-
-        print ("Input one of the following squares, Key: TopLeft, TopCentre, TopRight, MiddleLeft, MiddleCentre, MiddleRight, BottomLeft, BottomCentre, BottomRight")
-        #SquareInput = input("What square do you want to input? ")
-
-        SquareInput = "TopLeft"
+        print ("Input one of the following squares, Key: TL, TC, TR, ML, MC, MR, BL, BC, BR (e.g., TL = Top Left)")
 
         while True:
-            SquareInput = input("What square do you want to input? ")
-    
-            if SquareInput not in BoardDictionaryKey:
-                print("error, please re-enter")
+            board.DisplayBoard()
+            SquareInput = input("What square do you want to input? ").upper()
+
+            if len(SquareInput) != 2:
+                print("\nInvalid input length. Please enter a 2-character code (e.g., TL, MC).")
                 continue
-        
-            row, col = board.ListIndexInverse(BoardDictionaryKey[SquareInput])
+    
+            if SquareInput[0] == "T":
+                col = 0
+
+            elif SquareInput[0] == "M":
+                col = 1
+
+            elif SquareInput[0] == "B":
+                col = 2
+
+            else:
+                print("Invaded row, please start with T, M or B.")
+
+
+            if SquareInput[1] == "L":
+                row = 0
+            
+            elif SquareInput[1] == "C":
+                row = 1
+            
+            elif SquareInput[1] == "R":
+                row = 2
+
+            else:
+                print("Invaded column, please end with L, C or R.")
+
             SquareState = board.GetSquare(row, col)
     
-            if SquareState == Square.EMPTY:
-                break 
-        
-        print("\nSquare is not empty please re-enter")
+            if SquareState != Square.EMPTY:
+                print("\nSquare is not empty please re-enter")
+
+            else:
+                break
 
         board.SetSquare(row, col, Letter)
         board.DisplayBoard()
@@ -274,7 +285,7 @@ def main():
 
     board.SetSquare(0, 1, Square.EMPTY)
     board.SetSquare(0, 2, Square.EMPTY)
-    #board.SetSquare(0, 0, Square.EMPTY)
+    board.SetSquare(0, 0, Square.EMPTY)
     board.DisplayBoard()
 
     Letter = Player.Turn ()
