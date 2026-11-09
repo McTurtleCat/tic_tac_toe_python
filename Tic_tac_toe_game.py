@@ -185,56 +185,59 @@ class Player:
 
         return Letter
 
-    def Move(board, Letter):
-
+    def CheckSquare (board):
         print ("Input one of the following squares, Key: TL, TC, TR, ML, MC, MR, BL, BC, BR (e.g., TL = Top Left)")
-
-
+         
         SquareCheck = False
-
+        
         while SquareCheck == False:
             board.DisplayBoard()
             SquareInput = input("What square do you want to input? ").upper()
-
+        
             if len(SquareInput) != 2:
-                print("\nInvalid input length. Please enter a 2-character code (e.g., TL, MC).")
-                continue
-    
+                    print("\nInvalid input length. Please enter a 2-character code (e.g., TL, MC).")
+                    continue
+            
             if SquareInput[0] == "T":
                 col = 0
-
+        
             elif SquareInput[0] == "M":
                 col = 1
-
+        
             elif SquareInput[0] == "B":
                 col = 2
-
+        
             else:
                 print("Invaded row, please start with T, M or B.")
-
-
+        
+        
             if SquareInput[1] == "L":
                 row = 0
-            
+                    
             elif SquareInput[1] == "C":
                 row = 1
-            
+                    
             elif SquareInput[1] == "R":
-                row = 2
-
+                 row = 2
+        
             else:
                 print("Invaded column, please end with L, C or R.")
-
+        
             SquareState = board.GetSquare(row, col)
-    
+            
             if SquareState != Square.EMPTY:
                 print("\nSquare is not empty please re-enter")
-
+        
             else:
                 SquareCheck = True
 
+            return row,col
+
+    def Move(board, Letter, row ,col):
+
         board.SetSquare(row, col, Letter)
         board.DisplayBoard()
+
 
 
 
@@ -293,8 +296,9 @@ def main():
 
     Letter = Player.Turn ()
 
+    row,col = Player.CheckSquare(board)
 
-    Player.Move(board, Letter)
+    Player.Move(board, Letter,row,col)
     #board.DisplayBoard()
 
 
