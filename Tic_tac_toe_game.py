@@ -52,24 +52,6 @@ class Board:
 
         return ((row * self.NumOfRows) + col)
 
-    def ListIndexInverse(self, IndexNumber):
-            '''
-            Translate a index of the board squares list to a board pointion in 
-            columns and rows.
-
-            Args:
-                IndexNumber (int):Index of board squares
-
-            Returns:
-                row (int): Vertical position of the board square (0 based).
-                col (int):Horizontal position of the board square (0 based).
-            '''
-
-            col = IndexNumber % self.NumOfCols
-            row = int(IndexNumber/self.NumOfCols)
-
-            return row,col
-
 
     def SetSquare(self, row, col, square):
         '''
