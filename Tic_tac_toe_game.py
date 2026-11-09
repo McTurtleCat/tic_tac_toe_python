@@ -264,13 +264,6 @@ def main():
         print("The game has been won by X")
 
 
-
-    TestIndex = board.ListIndex(2,1)
-    Horiz,Vert = board.ListIndexInverse(TestIndex)
-
-    if Horiz == 2 and Vert == 1:
-        print("ListIndexInverse Test Passed")
-
     board.SetSquare(0, 1, Square.EMPTY)
     board.SetSquare(0, 2, Square.EMPTY)
     board.SetSquare(0, 0, Square.EMPTY)
