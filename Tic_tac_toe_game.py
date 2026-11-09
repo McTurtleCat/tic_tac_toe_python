@@ -148,9 +148,8 @@ class Board:
 
 class Player:
 
-    def Turn():
+    def Turn(RandNumber):
 
-        RandNumber = random.randint(1,2)
         Number = RandNumber % 2
 
         if Number == 1:
@@ -159,13 +158,11 @@ class Player:
         elif Number == 0:
             Letter = Square.O
 
-        Number += 1
-
-        Number = Number % 2
+        RandNumber += 1
 
         print("It is's" ,Letter, " Turn\n ")
 
-        return Letter
+        return Letter, RandNumber
 
     def CheckSquare (board):
         print ("Input one of the following squares, Key: TL, TC, TR, ML, MC, MR, BL, BC, BR (e.g., TL = Top Left)")
@@ -173,7 +170,9 @@ class Player:
         SquareCheck = False
         
         while SquareCheck == False:
+            
             board.DisplayBoard()
+            
             SquareInput = input("What square do you want to input? ").upper()
         
             if len(SquareInput) != 2:
@@ -213,7 +212,7 @@ class Player:
             else:
                 SquareCheck = True
 
-            return row,col
+        return row,col
 
     def Move(board, Letter, row ,col):
 
@@ -269,11 +268,15 @@ def main():
     board.SetSquare(0, 0, Square.EMPTY)
     board.DisplayBoard()
 
-    Letter = Player.Turn ()
 
-    row,col = Player.CheckSquare(board)
+    RandNumber = random.randint(1,2)
+    
+    for Index in range (4):
+        Letter, RandNumber = Player.Turn (RandNumber)
 
-    Player.Move(board, Letter,row,col)
+        row,col = Player.CheckSquare(board)
+
+        Player.Move(board, Letter,row,col)
     #board.DisplayBoard()
 
 
