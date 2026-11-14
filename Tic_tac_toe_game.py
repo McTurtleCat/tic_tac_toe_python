@@ -220,6 +220,45 @@ class Player:
         board.DisplayBoard()
 
 
+    def Computer(board):
+
+        EmptySquare = False
+
+        while EmptySquare == False:
+
+            MovesDictionary = {0:"TL",1:"TC", 2:"TR", 3:"ML",4:"MC", 5:"MR", 6:"BL",7:"BC", 8:"BR"}
+
+            DictionaryIndex = random.randint (0,8)
+
+            RandomMove = MovesDictionary[DictionaryIndex]
+
+            if RandomMove[0] == "T":
+                col = 0
+                
+            elif RandomMove[0] == "M":
+                col = 1
+                
+            elif RandomMove[0] == "B":
+                col = 2
+
+        
+            if RandomMove[1] == "L":
+                row = 0
+                            
+            elif RandomMove[1] == "C":
+                row = 1
+                            
+            elif RandomMove[1] == "R":
+                row = 2
+
+            SquareState = board.GetSquare(row, col)
+
+            if SquareState == Square.EMPTY:
+                EmptySquare = True
+
+        return row,col
+
+
 
 
 def main():
@@ -270,14 +309,29 @@ def main():
 
 
     RandNumber = random.randint(1,2)
+
+    winX = board.GameWin(Square.X)
+    winO = board.GameWin(Square.O)
+
+    Index = 0
+
     
-    for Index in range (4):
+    while winX == False and winO == False or Index == 9:
+
         Letter, RandNumber = Player.Turn (RandNumber)
 
-        row,col = Player.CheckSquare(board)
+        row,col = Player.Computer(board)
 
         Player.Move(board, Letter,row,col)
-    #board.DisplayBoard()
+
+        winX = board.GameWin(Square.X)
+        winO = board.GameWin(Square.O)
+
+        Index += 1
+
+        #print(winX)
+        #print(winO)
+
 
 
 
