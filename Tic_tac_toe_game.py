@@ -178,31 +178,11 @@ class Player:
             if len(SquareInput) != 2:
                     print("\nInvalid input length. Please enter a 2-character code (e.g., TL, MC).")
                     continue
-            
-            if SquareInput[0] == "T":
-                col = 0
+
+            col = Player.LetterToCol(SquareInput)
         
-            elif SquareInput[0] == "M":
-                col = 1
+            row = Player.LetterToRow(SquareInput)
         
-            elif SquareInput[0] == "B":
-                col = 2
-        
-            else:
-                print("Invaded row, please start with T, M or B.")
-        
-        
-            if SquareInput[1] == "L":
-                row = 0
-                    
-            elif SquareInput[1] == "C":
-                row = 1
-                    
-            elif SquareInput[1] == "R":
-                 row = 2
-        
-            else:
-                print("Invaded column, please end with L, C or R.")
         
             SquareState = board.GetSquare(row, col)
             
@@ -232,24 +212,8 @@ class Player:
 
             RandomMove = MovesDictionary[DictionaryIndex]
 
-            if RandomMove[0] == "T":
-                col = 0
-                
-            elif RandomMove[0] == "M":
-                col = 1
-                
-            elif RandomMove[0] == "B":
-                col = 2
-
-        
-            if RandomMove[1] == "L":
-                row = 0
-                            
-            elif RandomMove[1] == "C":
-                row = 1
-                            
-            elif RandomMove[1] == "R":
-                row = 2
+            row = Player.LetterToRow(RandomMove)
+            col = Player.LetterToCol(RandomMove)
 
             SquareState = board.GetSquare(row, col)
 
@@ -257,6 +221,38 @@ class Player:
                 EmptySquare = True
 
         return row,col
+
+    def LetterToRow(SquareInput):
+
+        if SquareInput[1] == "L":
+            row = 0
+                                    
+        elif SquareInput[1] == "C":
+            row = 1
+                                    
+        elif SquareInput[1] == "R":
+            row = 2
+
+        else:
+            print("Invaded row, please start with T, M or B.")
+
+        return row
+
+    def LetterToCol(SquareInput):
+
+        if SquareInput[0] == "T":
+            col = 0
+                
+        elif SquareInput[0] == "M":
+            col = 1
+                
+        elif SquareInput[0] == "B":
+            col = 2
+
+        else:
+            print("Invaded column, please end with L, C or R.")
+
+        return col
 
 
 
@@ -316,7 +312,7 @@ def main():
     Index = 0
 
     
-    while winX == False and winO == False or Index == 9:
+    while winX == False and winO == False and Index <= 9:
 
         Letter, RandNumber = Player.Turn (RandNumber)
 
@@ -329,8 +325,8 @@ def main():
 
         Index += 1
 
-        #print(winX)
-        #print(winO)
+        print(winX)
+        print(winO)
 
 
 
