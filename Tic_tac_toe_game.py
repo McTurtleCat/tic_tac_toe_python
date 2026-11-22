@@ -374,11 +374,13 @@ def main():
 
         Player.Move(board, Letter,row,col)
 
+
+    def GameOver(winX, winO, Draw):
+
         winX = board.GameWin(Square.X)
         winO = board.GameWin(Square.O)
         Draw = board.Draw()
-
-
+        
         if winX == True:
             print ("Player X has won")
 
@@ -388,16 +390,16 @@ def main():
         elif Draw == True:
             print ("The game is a draw")
 
+        return winX, winO, Draw
+
     while winX == False and winO == False and Draw == False and Index <= 9:
         
         Letter, RandNumber = Player.Turn (RandNumber)
 
         PlayPlayer()
+        winX, winO, Draw = GameOver(winX, winO, Draw)
         
         Index += 1
-
-
-
 
 
 # Entry point for the program, if run as a script
