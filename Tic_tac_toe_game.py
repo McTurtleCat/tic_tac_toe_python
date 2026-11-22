@@ -359,44 +359,6 @@ def main():
     print("Tic tac toe game")
 
     board = Board()  # Create a new board
-    board.DisplayBoard()
-
-    # Testing: Set a specific square on the board to a known value
-    board.SetSquare(0, 1, Square.X)
-
-    board.DisplayBoard()  # Display the updated board
-
-    # Testing: Getting a specific square from the board 
-    square = board.GetSquare(0, 1)
-
-    #If the value the function returns is the same as the value set,
-    # then it displays a success message
-    if (square == Square.X):
-        print("Success")
-
-    # Overwise it displays the message Failure, 
-    # while also displaying the value the function found
-    else:
-        print("Failure (found ", square, ")")
-
-    board.SetSquare(0, 2, Square.X)  # Testing: Set a specific square on the board to a known value
-    board.SetSquare(0, 0, Square.X)  # Testing: Set a specific square on the board to a known value
-    board.DisplayBoard()
-
-
-    Win = board.GameWin(Square.X) # Calling the GameWin function to see if the Game has been won
-    board.DisplayBoard()
-
-    #print(Win) #Testing: to see if win is true or false
-    if Win == True:
-        print("The game has been won by X")
-
-
-    board.SetSquare(0, 1, Square.EMPTY)
-    board.SetSquare(0, 2, Square.EMPTY)
-    board.SetSquare(0, 0, Square.EMPTY)
-    board.DisplayBoard()
-
 
     RandNumber = random.randint(1,2)
 
@@ -406,11 +368,8 @@ def main():
 
     Index = 0
 
-    
-    while winX == False and winO == False and Draw == False and Index <= 9:
-
-        Letter, RandNumber = Player.Turn (RandNumber)
-
+        
+    def PlayPlayer():
         row,col = Player.CheckSquare(board)
 
         Player.Move(board, Letter,row,col)
@@ -419,7 +378,6 @@ def main():
         winO = board.GameWin(Square.O)
         Draw = board.Draw()
 
-        Index += 1
 
         if winX == True:
             print ("Player X has won")
@@ -429,6 +387,14 @@ def main():
 
         elif Draw == True:
             print ("The game is a draw")
+
+    while winX == False and winO == False and Draw == False and Index <= 9:
+        
+        Letter, RandNumber = Player.Turn (RandNumber)
+
+        PlayPlayer()
+        
+        Index += 1
 
 
 
