@@ -28,7 +28,7 @@ class Board:
 
     Attributes:
         NumOfRows (int): Number of rows in the board (i.e the vertical size).
-        NumOfCols (int): Number of columns in the board (i.e the horizonal size)
+        NumOfCols (int): Number of columns in the board (i.e the horizontal size)
         NumOfSquares (int): Total number of squares on the board
     '''
 
@@ -40,7 +40,7 @@ class Board:
 
     def ListIndex(self, row, col):
         '''
-        Translate a board pointion to an index of the board squares list.
+        Translate a board position to an index of the board squares list.
 
         Args:
             row (int): Vertical position of the board square (0 based).
@@ -72,7 +72,7 @@ class Board:
 
     def GetSquare(self, row, col):
         '''
-        Retrive the value of a specific square by using the position (row/column)
+        Retrieve the value of a specific square by using the position (row/column)
 
         Args:
             row (int): Vertical position of the board square (0 based).
@@ -92,8 +92,8 @@ class Board:
         A winning position is one where one of the following is true:
                   * a row where all the squares in the row are the same
                   * a column where all the squares in the column are the same
-                  * or a diaganol from the top left to bottom right
-                  * or a diagonial from the top right to bottom left
+                  * or a diagonal from the top left to bottom right
+                  * or a diagonal from the top right to bottom left
 
         Args:
             square (Square): Current state of the specified board position.
