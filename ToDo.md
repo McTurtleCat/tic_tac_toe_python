@@ -1,6 +1,4 @@
 # TO DO List
- ### user inputs
-input validation for user inputs
-### Win Coditions 
+### Add Comments for code in main function
 ### play again
 ### game Stats (Number of wins per person)
