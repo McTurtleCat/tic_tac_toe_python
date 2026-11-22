@@ -382,8 +382,6 @@ def main():
 
         return row, col
 
-        
-
 
     def GameOver(winX, winO, Draw):
 
