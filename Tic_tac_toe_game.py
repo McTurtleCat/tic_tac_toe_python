@@ -122,6 +122,23 @@ class Board:
 
         return Win
 
+    def Draw(self):
+
+        Draw = False
+
+        Draw = Draw or\
+            (self.GetSquare (0, 0) != Square.EMPTY) and \
+            (self.GetSquare (0, 1) != Square.EMPTY) and \
+            (self.GetSquare (0, 2) != Square.EMPTY) and \
+            (self.GetSquare (1, 0) != Square.EMPTY) and \
+            (self.GetSquare (1, 1) != Square.EMPTY) and \
+            (self.GetSquare (1, 2) != Square.EMPTY) and \
+            (self.GetSquare (2, 0) != Square.EMPTY) and \
+            (self.GetSquare (2, 1) != Square.EMPTY) and \
+            (self.GetSquare (2, 2) != Square.EMPTY)
+
+        return Draw
+
     def DisplayBoard(self):
         '''
         Displays the board
@@ -308,25 +325,33 @@ def main():
 
     winX = board.GameWin(Square.X)
     winO = board.GameWin(Square.O)
+    Draw = board.Draw()
 
     Index = 0
 
     
-    while winX == False and winO == False and Index <= 9:
+    while winX == False and winO == False and Draw == False and Index <= 9:
 
         Letter, RandNumber = Player.Turn (RandNumber)
 
-        row,col = Player.Computer(board)
+        row,col = Player.CheckSquare(board)
 
         Player.Move(board, Letter,row,col)
 
         winX = board.GameWin(Square.X)
         winO = board.GameWin(Square.O)
+        Draw = board.Draw()
 
         Index += 1
 
-        print(winX)
-        print(winO)
+        if winX == True:
+            print ("Player X has won")
+
+        elif winO == True:
+            print ("Player O has won")
+
+        elif Draw == True:
+            print ("The game is a draw")
 
 
 
