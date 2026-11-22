@@ -97,6 +97,9 @@ class Board:
 
         Args:
             square (Square): Current state of the specified board position.
+
+        Return:
+            Win (Boolean): Decides if a winning position has been achieved 
         '''
 
         Win = False
@@ -123,6 +126,13 @@ class Board:
         return Win
 
     def Draw(self):
+        '''
+        Checks to see if the game is a draw
+        The game is a draw when all squares have a value (Either X or O)
+
+        Return:
+            Draw (Boolean): Decides if a draw requirements have been met.
+        '''
 
         Draw = False
 
@@ -166,6 +176,16 @@ class Board:
 class Player:
 
     def Turn(RandNumber):
+        '''
+        Creates the stating turn, and keeps track of the turn throughout the game
+
+        Args:
+            RandNumber (int): random number generated at the start and changed throughout to reflect the current turn.
+
+        Returns:
+            RandNumber (int): random number generated at the start and changed throughout to reflect the current turn.
+            Letter (str (X or O)): The letter of who's turn it is
+        '''
 
         Number = RandNumber % 2
 
@@ -182,6 +202,21 @@ class Player:
         return Letter, RandNumber
 
     def CheckSquare (board):
+        '''
+        Acts as the player turn
+        Has input validation for the player turn to check if:
+            the inputted value is only 2 characters long
+            the square entered is empty 
+        uses the functions LetterToCol/LetterToRow which changes the 2 letters to col/row format
+
+        Args:
+            board (object): The board of which the move will be made
+
+        Returns:
+            row (int): Vertical position of the board square (0 based).
+            col (int): Horizontal position of the board square (0 based).
+        '''
+
         print ("Input one of the following squares, Key: TL, TC, TR, ML, MC, MR, BL, BC, BR (e.g., TL = Top Left)")
          
         SquareCheck = False
@@ -212,12 +247,34 @@ class Player:
         return row,col
 
     def Move(board, Letter, row ,col):
+        '''
+        Actually carries out the move made by the player/ computer
+
+        Args:
+            board (object): The board of which the move will be made
+            Letter (str (X or O)): The letter of who's turn it is
+            row (int): Vertical position of the board square (0 based).
+            col (int): Horizontal position of the board square (0 based).
+        '''
 
         board.SetSquare(row, col, Letter)
         board.DisplayBoard()
 
 
     def Computer(board):
+        '''
+        Acts as the Computer turn
+        Does not have input validation for the turn as the computer only has set values to pick from
+        (meaning there should be no outstanding values).
+        uses the functions LetterToCol/LetterToRow which changes the 2 letters to col/row format
+        
+        Args:
+            board (object): The board of which the move will be made
+
+        Returns:
+            row (int): Vertical position of the board square (0 based).
+            col (int): Horizontal position of the board square (0 based).
+        '''
 
         EmptySquare = False
 
@@ -240,6 +297,16 @@ class Player:
         return row,col
 
     def LetterToRow(SquareInput):
+        '''
+        Changes the first letter to its corresponding row.
+        Also if the letter doesn't match any it displays an error and asks the user to re-enter.
+
+        Args:
+            SquareInput (str): the inputted value from the user of the square they want to input.
+
+        Return:
+            row (int): Vertical position of the board square (0 based).
+        '''
 
         if SquareInput[1] == "L":
             row = 0
@@ -256,6 +323,16 @@ class Player:
         return row
 
     def LetterToCol(SquareInput):
+        '''
+        Changes the second letter to its corresponding col.
+        Also if the letter doesn't match any it displays an error and asks the user to re-enter.
+        
+        Args:
+            SquareInput (str): the inputted value from the user of the square they want to input.
+
+        Return:
+            col (int): horizontal position of the board square (0 based).
+        '''
 
         if SquareInput[0] == "T":
             col = 0
