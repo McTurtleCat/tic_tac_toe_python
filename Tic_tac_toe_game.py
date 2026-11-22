@@ -368,11 +368,21 @@ def main():
 
     Index = 0
 
+    GameMode = int(input("What game mode do you want to play if Player vs Player enter 1, if Player vs Computer enter 2, if Computer vs Computer (spectating) enter 3: "))
+
         
     def PlayPlayer():
         row,col = Player.CheckSquare(board)
 
-        Player.Move(board, Letter,row,col)
+        return row, col
+
+
+    def PlayComputer():
+        row,col = Player.Computer(board)
+
+        return row, col
+
+        
 
 
     def GameOver(winX, winO, Draw):
@@ -380,7 +390,7 @@ def main():
         winX = board.GameWin(Square.X)
         winO = board.GameWin(Square.O)
         Draw = board.Draw()
-        
+
         if winX == True:
             print ("Player X has won")
 
@@ -396,7 +406,27 @@ def main():
         
         Letter, RandNumber = Player.Turn (RandNumber)
 
-        PlayPlayer()
+        if GameMode == 1:
+            row, col = PlayPlayer()
+
+        if GameMode == 2:
+            row,col = PlayPlayer()
+
+            Player.Move(board, Letter, row, col)
+
+            winX, winO, Draw = GameOver(winX, winO, Draw)
+                    
+            Index += 1
+
+            Letter, RandNumber = Player.Turn (RandNumber)
+
+            row,col = PlayComputer()
+
+        if GameMode == 3:
+            row, col = PlayComputer()
+        
+        Player.Move(board, Letter, row, col)
+
         winX, winO, Draw = GameOver(winX, winO, Draw)
         
         Index += 1
